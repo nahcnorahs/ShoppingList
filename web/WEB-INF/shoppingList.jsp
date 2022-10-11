@@ -1,7 +1,7 @@
 <%-- 
     Document   : shoppingList
     Created on : Oct 11, 2022, 3:25:33 PM
-    Author     : Shenron
+    Author     : Sharon
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
