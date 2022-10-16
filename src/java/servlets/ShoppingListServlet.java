@@ -26,6 +26,8 @@ public class ShoppingListServlet extends HttpServlet {
             throws ServletException, IOException {
         
             HttpSession session = request.getSession();
+            String username = (String)session.getAttribute("username");
+            session.setAttribute("username",username);
             String action = request.getParameter("action");
             
             if(action!= null && action.equals("logout")){
@@ -34,7 +36,8 @@ public class ShoppingListServlet extends HttpServlet {
                 getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);
             }
             
-            if (session.getAttribute("username") != null){
+            else if (username != null){
+                session.setAttribute("username",username);
                 getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
             } else {
                 getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);
