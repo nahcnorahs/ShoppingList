@@ -15,8 +15,8 @@
     </head>
     <body>
         <h1>Shopping List</h1>
-        <div><p>Hello, <b>${sessionScope.username}</b></p>
-            <a href="ShoppingList?action=logout">Log Out</a>
+        <div><p>Hello, ${username}</p>
+            <a href="<c:url value='/ShoppingList?action=logout'/>">Log Out</a>
         </div>
             <br>
             
@@ -28,13 +28,13 @@
     </form>
             <div>
                 <form action="ShoppingList" method="POST">
-                    <c:forEach items ="${sessionScope.itemList}" var="item">
+                    <c:forEach items ="${itemList}" var="item">
                         <div>
-                            <input type="checkbox" name="userItems" value="${item}">
+                            <input type="radio" name="userItems" value="${item}">
                             <label><c:out value="${item}" /></label>
                         </div>
                     </c:forEach>
-                    <p>${message}</p>
+                    //<p>${message}</p>
                     <input type="submit" value="Delete">
                     <input type ="hidden" name="action" value="delete">
                                

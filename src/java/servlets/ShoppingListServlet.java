@@ -31,13 +31,13 @@ public class ShoppingListServlet extends HttpServlet {
             if(action!= null && action.equals("logout")){
                 items.clear();
                 session.invalidate();
-                getServletContext().getRequestDispatcher("/WEB/INF/jsp/register.jsp").forward(request,response);
+                getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);
             }
             
             if (session.getAttribute("username") != null){
-                getServletContext().getRequestDispatcher("/WEB-INF/jsp/shoppingList.jsp").forward(request,response);
+                getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
             } else {
-                getServletContext().getRequestDispatcher("/WEB-INF/jsp/register.jsp").forward(request,response);
+                getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);
             }
     }
 
@@ -49,33 +49,38 @@ public class ShoppingListServlet extends HttpServlet {
         String username = request.getParameter("username");
         String action = request.getParameter("action");
         String item = request.getParameter("item");
-        String[] userItems = request.getParameterValues("userItems");
+        //ArrayList<String> list = new ArrayList<>();
+       String[] userItems = request.getParameterValues("userItems");
         
-        try {
+     
             if(action.equals("register")){
                 session.setAttribute("username", username);
-            }else if(action.equals("add")){
+            }else if(action.equals("add") && !item.equals("")){
                 items.add(item);
                 session.setAttribute("itemList", items);
-            } else if (action.equals("delete")){
+            } else if (action.equals("delete") && items != null){
                 for (int i = 0; i < userItems.length; i++){
                     for (int j = 0; j < items.size(); j++){
                         if (userItems[i].equals(items.get(j))){
                             items.remove(j);
                             session.setAttribute("itemList", items);
                         }
+                        getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
                     }
                 }
             }
             
-            getServletContext().getRequestDispatcher("/WEB-INF/jsp/shoppingList.jsp").forward(response,request);
-                
-        } catch (Exception e){
-            request.setAttribute("message", "Error");
-            getServletContext().getRequestDispatcher("/WEB-INF/jsp/shoppingList.jsp").forward(response,request);
-        }
-     
+            getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
     }
+            
+            //getServletContext().getRequestDispatcher("/WEB-INF/jsp/shoppingList.jsp").forward(response,request);
+                
+//        } catch (Exception e){
+            //request.setAttribute("message", "Error");
+            
+        }
+    
+    
 
 
-}
+
