@@ -34,9 +34,10 @@
                             <label><c:out value="${item}" /></label>
                         </div>
                     </c:forEach>
-                    //<p>${message}</p>
+                    
                     <input type="submit" value="Delete">
                     <input type ="hidden" name="action" value="delete">
+                    <br>
                                
                 </form>
             </div>

@@ -18,8 +18,6 @@
             <input type="text" name="username" value="${username}">
            <input type="hidden" name="action" value="register"> 
             <input type="submit" value="Register name">
-            <br>
-            ${res}
         </form>
     </body>
 </html>
